@@ -21,7 +21,7 @@ const Credits = (props) => {
   };
   return (
     <div>
-      <h1>Credits: {props.creditAmount}</h1>
+      <h1>Credits: {(Math.round(props.creditAmount*100)/100).toFixed(2)}</h1>
 
       {creditsView()}
 

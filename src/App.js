@@ -20,9 +20,11 @@ class App extends Component {
     // Create and initialize state
     super();
     this.state = {
-      accountBalance: 1234567.89,
-      debitList: [],
+      accountBalance: 0,
+      creditAmount: 0,
       creditList: [],
+      debitAmount: 0,
+      debitList: [],
       currentUser: {
         userName: "Joe Smith",
         memberSince: "11/22/99",
@@ -35,9 +37,13 @@ class App extends Component {
     const debitAPI = "https://moj-api.herokuapp.com/debits";
     try {
       let response = await axios.get(creditAPI);
-      this.setState({ creditList: response.data });
+      for(let i = 0; i < response.data.length; i++){
+        this.setState({ creditList: response.data, accountBalance: this.state.accountBalance + response.data[i].amount, creditAmount: this.state.creditAmount + response.data[i].amount });
+      }
       response = await axios.get(debitAPI);
-      this.setState({ debitList: response.data });
+      for(let i = 0; i < response.data.length; i++){
+        this.setState({ debitList: response.data, accountBalance: this.state.accountBalance - response.data[i].amount, debitAmount: this.state.debitAmount - response.data[i].amount });
+      }
     } catch (error) {
       if (error.response) {
         console.log(error.response.data);
@@ -68,8 +74,8 @@ class App extends Component {
     const LogInComponent = () => (
       <LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />
     );
-    const DebitsComponent = () => <Debits debits={this.state.debitList} />;
-    const CreditsComponent = () => <Credits credits={this.state.creditList} />;
+    const DebitsComponent = () => <Debits debitAmount={this.state.debitAmount} debitInfo={this.state.debitList} />;
+    const CreditsComponent = () => <Credits creditAmount={this.state.creditAmount} creditInfo={this.state.creditList} />;
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (

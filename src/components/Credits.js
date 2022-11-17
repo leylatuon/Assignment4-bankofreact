@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 
 const Credits = (props) => {
   let creditsView = () => {
-    const { credits } = props;
-    return credits.map((credit) => {
+    const { creditInfo } = props;
+    return creditInfo.map((credit) => {
       // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
       let date = credit.date.slice(0, 10);
       return (
@@ -21,7 +21,7 @@ const Credits = (props) => {
   };
   return (
     <div>
-      <h1>Credits</h1>
+      <h1>Credits: {props.creditAmount}</h1>
 
       {creditsView()}
 

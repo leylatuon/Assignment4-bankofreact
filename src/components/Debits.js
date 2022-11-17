@@ -23,7 +23,7 @@ const Debits = (props) => {
   // Render the list of Debit items and a form to input new Debit item
   return (
     <div>
-      <h1>Debits: {props.debitAmount}</h1>
+      <h1>Debits: {(Math.round(props.debitAmount*100)/100).toFixed(2)}</h1>
 
       {debitsView()}
 

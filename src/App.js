@@ -1,6 +1,5 @@
 /*==================================================
 src/App.js
-
 This is the top-level component of the app.
 It contains the top-level state.
 ==================================================*/
@@ -59,6 +58,28 @@ class App extends Component {
     this.setState({ currentUser: newUser });
   };
 
+  addCredit = (event) => {
+    event.preventDefault();
+    const date = new Date();
+    let credit = {"description": event.target[0].value, "amount": event.target[1].value, "date": date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()};
+    this.setState((prevState) => ({
+      creditList: [credit, ...prevState.creditList],
+      creditAmount: prevState.creditAmount + Number(event.target[1].value),
+      accountBalance: prevState.accountBalance + Number(event.target[1].value)
+    }))
+  }
+
+  addDebit = (event) => {
+    event.preventDefault();
+    const date = new Date();
+    let debit = {"description": event.target[0].value,"amount": event.target[1].value,"date": date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()};
+    this.setState((prevState) => ({
+      debitList: [debit, ...prevState.debitList],
+      debitAmount: prevState.debitAmount - Number(event.target[1].value),
+      accountBalance: prevState.accountBalance - Number(event.target[1].value)
+    }))
+  }
+
   // Create Routes and React elements to be rendered using React components
   render() {
     // Create React elements and pass input props to components
@@ -74,8 +95,8 @@ class App extends Component {
     const LogInComponent = () => (
       <LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />
     );
-    const DebitsComponent = () => <Debits debitAmount={this.state.debitAmount} debitInfo={this.state.debitList} />;
-    const CreditsComponent = () => <Credits creditAmount={this.state.creditAmount} creditInfo={this.state.creditList} />;
+    const DebitsComponent = () => <Debits addDebit = {this.addDebit} debitAmount={this.state.debitAmount} debitInfo={this.state.debitList} />;
+    const CreditsComponent = () => <Credits addCredit = {this.addCredit} creditAmount={this.state.creditAmount} creditInfo={this.state.creditList} />;
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (

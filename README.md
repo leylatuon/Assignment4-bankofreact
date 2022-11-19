@@ -1,3 +1,12 @@
+## Group Members:
+- Leyla Tuon: leylatuon
+- Brian Hong: bh9232
+- Jeffrey Li: lijeffrey02
+- Samuel Fang: SamuelFang
+
+Github Pages: https://leylatuon.github.io/Assignment4-bankofreact/credits <br>
+[Assignment Guidelines](https://gist.github.com/johnnylaicode/ba1f979e0d9106d4e21ffa03dcf0370f)
+
 # bank-of-react-example-code-gh-pages
 This repository contains a React application example on how to implement client-side routing with React Router and its components including Route, Router Link, and Redirect.
 

@@ -24,12 +24,13 @@ const Debits = (props) => {
   return (
     <div>
       <h1>Debits: {(Math.round(props.debitAmount*100)/100).toFixed(2)}</h1>
+      <h2>Balance: {(Math.round(props.accountBalance*100)/100).toFixed(2)}</h2>
 
       {debitsView()}
 
       <form onSubmit={props.addDebit}>
         Description: <input type="text" name="description" />
-        Amount: <input type="number" name="amount" />
+        Amount: <input type="number" step="0.01" name="amount" />
         <button type="submit">Add Debit</button>
       </form>
       <br />

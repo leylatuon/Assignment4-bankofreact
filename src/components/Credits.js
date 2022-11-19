@@ -21,12 +21,13 @@ const Credits = (props) => {
   return (
     <div>
       <h1>Credits: {(Math.round(props.creditAmount*100)/100).toFixed(2)}</h1>
+      <h2>Balance: {(Math.round(props.accountBalance*100)/100).toFixed(2)}</h2>
 
       {creditsView()}
 
       <form onSubmit={props.addCredit}>
         Description: <input type="text" name="description" />
-        Amount: <input type="number" name="amount" />
+        Amount: <input type="number" step="0.01" name="amount" />
         <button type="submit">Add Credit</button>
       </form>
       <br />

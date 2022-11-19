@@ -63,7 +63,7 @@ class App extends Component {
     const date = new Date();
     let credit = {"description": event.target[0].value, "amount": event.target[1].value, "date": date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()};
     this.setState((prevState) => ({
-      creditList: [...prevState.creditList, credit],
+      creditList: [credit, ...prevState.creditList],
       creditAmount: prevState.creditAmount + Number(event.target[1].value),
       accountBalance: prevState.accountBalance + Number(event.target[1].value)
     }))
@@ -74,7 +74,7 @@ class App extends Component {
     const date = new Date();
     let debit = {"description": event.target[0].value,"amount": event.target[1].value,"date": date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()};
     this.setState((prevState) => ({
-      debitList: [...prevState.debitList, debit],
+      debitList: [debit, ...prevState.debitList],
       debitAmount: prevState.debitAmount - Number(event.target[1].value),
       accountBalance: prevState.accountBalance - Number(event.target[1].value)
     }))

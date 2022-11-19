@@ -75,7 +75,7 @@ class App extends Component {
     let debit = {"description": event.target[0].value,"amount": event.target[1].value,"date": date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()};
     this.setState((prevState) => ({
       debitList: [...prevState.debitList, debit],
-      debitAmount: prevState.debitAmount + Number(event.target[1].value),
+      debitAmount: prevState.debitAmount - Number(event.target[1].value),
       accountBalance: prevState.accountBalance - Number(event.target[1].value)
     }))
   }
